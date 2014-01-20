@@ -23,7 +23,7 @@ div.container {
  padding-right:25px;
  padding-left:25px;
  height: 100%;
- background: #FFCF79;
+ background: rgb(255, 255, 255);
  position: fixed;
  left: 0;
  right: 0;
