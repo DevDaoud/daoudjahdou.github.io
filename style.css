@@ -216,9 +216,9 @@ width: 45px;
 }
 
 /*videojs*/
-.vjs-default-skin .vjs-big-play-button
-{
-top: 50%;
-left: 50%;
-margin: -4em auto auto -6em;
+
+.vjs-default-skin .vjs-big-play-button {
+    left:40% !important;
+    top:40% !important;
 }
+

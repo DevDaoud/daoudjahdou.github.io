@@ -90,8 +90,8 @@ function addVideo(url, id, title, desc, poster){
                     title+
                 "</div>"+
                 "<div class=\"video\">"+
-                    "<video id=\""+id+"\" class=\"video-js vjs-default-skin\" controls>"+ 
-                    "<source src=\""+url+"\" type='video/mp4' />"+
+                    "<video id=\""+id+"\" class=\"video-js vjs-default-skin vjs-paused\" controls>"+ 
+                        "<source src=\""+url+"\" type='video/mp4' />"+
                     "</video>"+
                 "</div>"+
                 "<div class=\"description font\">"+
