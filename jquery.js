@@ -8,43 +8,63 @@ $.fn.scrollStopped = function(callback) {
         });
     };
 
+var TO = false;
+var scroll_static = true;
+
+
+
+
+
+
+function myfunction(){
+scroll_static = true;
+console.log('stopped scrolling');
+}
 
 function main() {
-    $(".content").scrollStopped(function () {
-        
-        if($(".content").scrollTop() > 100 ){
-            console.log($(".content").scrollTop()+ " stick on top");
-            stickOnTop();
-        }else{
-            console.log($(".content").scrollTop()+ " spaceIt");
-            spaceIt();           
-        }
+    $(".content").scroll( function () {
+       makeBanner();  
     });
 }    
+
+function makeBanner(){
+    if($(".content").scrollTop() > 10 ){
+        stickOnTop();
+    }else{
+        spaceIt();           
+    }
+}
+
 function stickOnTop(){
-    $(".container").transition({"padding-top" : "0px"},200, 'snap');
-    $(".banner").transition({position:"fixed", left:"-5px", right:"-5px"},200, 'snap');
-    $(".mantra").transition({y : '-25px' },200, 'snap');
-    $(".menu").transition({y : '45px', width : '60px'},200, 'snap');
+    if(scroll_static){
+        $(".container").transition({"padding-top" : "0px"},200, 'snap');
+        $(".banner").transition({position:"fixed", left:"-5px", right:"-5px"},200, 'snap');
+        $(".mantra").transition({y : '-25px' },200, 'snap');
+        $(".menu").transition({y : '45px', width : '60px'},200, 'snap');
+        scroll_static = false;
+    }
 }
 
 function spaceIt(){
-    
-    $(".container").attr( 'style', '' );
-    $(".banner").attr( 'style', '' );
-    //$(".menu").attr( 'style', '' );
-    $(".mantra").attr( 'style', '' );
-    //$(".banner").css({"position": "", "top": ""});
-    //$(".banner").transition({y : '-25px' , left:"-5px", right:"-5px"});
-    //$(".mantra").transition({y : '25px' });
-    $(".menu").transition({y : '0px', width : '60px'},200, 'snap');
-    $('.mantra').css({ opacity: 0 }).transition({y : '0px' , x: '400%', opacity: 100 },200, 'snap');
+    if(!scroll_static){
+        $(".container").attr( 'style', '' );
+        $(".banner").attr( 'style', '' );
+        //$(".menu").attr( 'style', '' );
+        $(".mantra").attr( 'style', '' );
+        //$(".banner").css({"position": "", "top": ""});
+        //$(".banner").transition({y : '-25px' , left:"-5px", right:"-5px"});
+        //$(".mantra").transition({y : '25px' });
+        $(".menu").transition({y : '0px', width : '60px'},200, 'snap');
+        $('.mantra').css({ opacity: 0 }).transition({y : '0px' , x: '400%', opacity: 100 },200, 'snap');
+        scroll_static = true;
+    }
 }
 
 $(document).ready(function (){
     main();
     initMantra();
     initMenu();
+   
     var tab = [];
     var posters = [];
     tab.push({a:"http://embed.koreus.com/00071/201401/monter-escalier-velo.mp4", 
@@ -59,6 +79,7 @@ $(document).ready(function (){
     for(var i=0;i < tab.length; i++){
         addVideo(tab[i].a, ""+i, tab[i].b,tab[i].c);
     }
+     initScroll();
 });
 
 
@@ -115,5 +136,7 @@ function addVideo(url, id, title, desc, poster){
 }
 
 
-
+function initScroll(){
+    $(".nano").nanoScroller();
+}
 
